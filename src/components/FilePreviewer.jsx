@@ -9,7 +9,7 @@ const FilePreview = ({ file, width, height }) => {
 			return;
 		}
 		// If the file is already a Base64 string, just use it
-		if (file.startsWith('data:image')) {
+		if (typeof file === 'string' && file?.startsWith('data:image')) {
 			setFileUrl(file);
 		} else {
 			// If it's a File object, convert it to a temporary object URL

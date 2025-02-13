@@ -14,7 +14,7 @@ const WelcomePage = ({ setIsFirstPage, setIsWelcomePage }) => {
 						<h1 className='font-roadRage w-[75%] md:w-[80%] border mx-auto text-[40px] md:text-[64px] border-[#07373F] rounded-3xl text-center px-2 py-10 md:px-2 md:py-2 drop-shadow-[5px_5px_5px_black]'>
 							Welcome to the Ultimate Ticket Generator App
 						</h1>
-						<p className='text-center text-gray-400'>
+						<p className='text-center text-gray-400 text-[16px] w-[85%] mx-auto'>
 							Generate your ticket for the upcoming{' '}
 							<span className='font-alatsi text-white'>Techember Fest '25</span>
 							<br />

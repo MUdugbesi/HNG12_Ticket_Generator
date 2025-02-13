@@ -18,13 +18,13 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 
 	return (
 		<>
-			<section className='w-[450px] md:w-[650px] lg:w-[700px] h-[1050px] mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23]'>
+			<section className='ticket-main-container h-[1056px]'>
 				<div className='w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
 					<Header width={'100%'} title={'Ready'} step={'3/3'} />
 
-					<section className='w-full h-[85%] m-auto text-gray-400'>
+					<section className='w-full h-[85%] m-auto'>
 						<div className='w-full text-center'>
-							<h3 className='text-white text-[32px] font-alatsi'>
+							<h3 className='text-[24px] md:text-[32px] font-alatsi'>
 								Your Ticket is Booked!
 							</h3>
 							<p className='mt-2'>
@@ -33,16 +33,16 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 							</p>
 						</div>
 
-						<section className='mt-16 w-[300px] h-[600px] mx-auto ticket relative flex flex-col items-center justify-center'>
+						<section className='mt-16 w-[300px] h-[600px] mx-auto ticket relative d-flex'>
 							<div className='w-[260px] h-[446px] mx-auto border border-[#24A0B5] mt-3 rounded-2xl absolute top-4'>
-								<div className='flex flex-col items-center justify-center'>
+								<div className='d-flex'>
 									<h2 className='font-roadRage text-[34px]'>
 										Techember Fest ”25
 									</h2>
-									<p className='font-roboto text-[10px] text-center text-gray-400'>
+									<p className='text-[10px] text-center'>
 										📍 04 Rumens road, Ikoyi, Lagos
 									</p>
-									<p className='font-roboto text-[10px] text-gray-400 mt-1'>
+									<p className='text-[10px] mt-1'>
 										📆 March 15, 2025 | 7:00pm
 									</p>
 								</div>
@@ -52,11 +52,11 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 									alt='ticket_img'
 									className='w-[140px] h-[140px] mx-auto mt-6 border-2 border-[#249fb5] rounded-lg object-cover object-top'
 								/>
-								<section className='w-[232px] h-[160px] mx-auto mt-5 bg-[#08343C] border-[#133D44] rounded-lg text-gray-400 p-2'>
+								<section className='w-[232px] h-[160px] mx-auto mt-5 bg-[#08343C] border-[#133D44] rounded-lg p-2'>
 									<div className='grid grid-cols-2 h-auto'>
 										<div className='border-r border-b border-[#12464E] h-[45px] flex justify-evenly items-start flex-col'>
 											<p className='text-[10px] pb-1'>Enter your name</p>
-											<p className='text-[8px] text-white'>
+											<p className='text-[8px] '>
 												{userTicket?.fullName || 'Avi'}
 											</p>
 										</div>
@@ -64,19 +64,19 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 											<p className='text-[10px]'>
 												Enter your email<sup>*</sup>
 											</p>
-											<p className='text-[8px] text-white'>
+											<p className='text-[8px] '>
 												{userTicket?.email || 'user@gmail.com'}
 											</p>
 										</div>
 										<div className='border-r border-b pb-1 border-[#12464E] flex justify-evenly items-start flex-col'>
 											<p className='text-[10px]'>Ticket type</p>
-											<p className='text-[8px] text-white'>
+											<p className='text-[8px] '>
 												{userTicket?.['ticketType'].plan}
 											</p>
 										</div>
 										<div className='border-b pl-2 border-[#12464E] flex justify-evenly items-start flex-col'>
 											<p className='text-[10px]'>Ticket for:</p>
-											<p className='text-[8px] text-white'>
+											<p className='text-[8px] '>
 												{userTicket?.['ticketNum'] || 0}
 											</p>
 										</div>
@@ -96,7 +96,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 							</div>
 						</section>
 
-						<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-16 gap-5'>
+						<div className='btn-ctn'>
 							<Button
 								text='Book Another Ticket'
 								className={
@@ -106,7 +106,9 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 							/>
 							<Button
 								text='Download Ticket'
-								className={'text-white bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5e2]'}
+								className={
+									' bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5e2]'
+								}
 							/>
 						</div>
 					</section>

@@ -68,6 +68,7 @@ const AttendeeForm = ({
 
 	const handleFileSelection = (e) => {
 		const selectedFile = e.target.files?.[0];
+
 		if (
 			selectedFile &&
 			(selectedFile.type === 'image/png' ||
@@ -258,47 +259,55 @@ const AttendeeForm = ({
 	};
 
 	return (
-		<section
-			className='w-[450px] md:w-[650px] lg:w-[700px] h-[1083px] mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23] my-20 relative
-		'
-		>
-			{message?.message && <MessageHandler userMessage={message} />}
-			<div className='w-[85%] md:w-[90%] lg:w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
+		<section className='h-[1083px] mx-auto  ticket-main-container'>
+			<div className='ticket-form-container'>
 				<Header width={'55%'} title={'Attendee Details'} step={'2/3'} />
 
+				{message?.message && <MessageHandler userMessage={message} />}
 				<form
-					className='w-full h-[85%] m-auto border border-[#0E464F] rounded-3xl bg-[#08252B]'
+					className='ticket-form h-[907px] attendee-form'
 					noValidate
 					onBlur={validateForm}
 				>
-					<div className='w-[90%] md:w-[556px] h-[328px] border border-[#07373F] bg-[#052228] mx-auto mt-5 rounded-3xl p-[12px] md:p-[24px] text-gray-400'>
+					<div className='card-ctn'>
 						<p className='max-md:pt-3 pb-3'>Upload Profile Photo</p>
-						<div className='w-[98%] md:w-[508px] h-[200px] mx-auto bg-[#0000003f] mt-4 relative flex place-content-center'>
-							<div className='absolute top-0 md:-top-4 w-[200px] md:w-[240px] h-[200px] md:h-[240px] border-[3px] border-[#249fb586] bg-[#0e464fc5] rounded-[32px] flex place-content-center hover:cursor-pointer'>
+						<div className='w-[98%] md:w-[508px] h-[200px] mx-auto md:bg-[#0000003f] mt-4 relative flex place-content-center'>
+							<div className='upload-img-ctn'>
 								{!imageFile ? (
-									<label
-										htmlFor='dropzone'
-										className='flex flex-col justify-center items-center gap-3'
-									>
-										<img
-											src={uploadImg}
-											alt='upload'
-											width={27}
-											height={19}
-											className=' hover:cursor-pointer'
-										/>
-										<small className='text-center'>
-											Drag & drop or click to <br />
-											upload
-										</small>
-									</label>
+									<>
+										<label
+											htmlFor='dropzone'
+											className='d-flex gap-3'
+										>
+											<img
+												src={uploadImg}
+												alt='upload'
+												width={27}
+												height={19}
+												className=' hover:cursor-pointer'
+											/>
+											<small className='text-center'>
+												Drag & drop or click to <br />
+												upload
+											</small>
+										</label>
+										{
+											<MessageHandler
+												userMessage={{
+													message: 'Accepted formats [jpg/jpeg/png] under 2MB!',
+													type: 'error',
+												}}
+												className={'bottom-2 text-[9px]'}
+											/>
+										}
+									</>
 								) : (
 									<FilePreview file={imageFile} width={240} height={240} />
 								)}
 								{imageFile && (
 									<label
 										htmlFor='dropzone'
-										className='flex flex-col justify-center items-center gap-3 absolute inset-0'
+										className='d-flex gap-3 absolute inset-0'
 									>
 										<img
 											src={changeImg}
@@ -322,7 +331,7 @@ const AttendeeForm = ({
 						<ProgressLine />
 					</div>
 
-					<section className='w-[95%] mx-auto text-gray-400'>
+					<section className='w-[95%] mx-auto'>
 						<Input
 							type={'text'}
 							label={'Enter your name'}
@@ -346,7 +355,7 @@ const AttendeeForm = ({
 						<div className='mt-4'>
 							<p>Special request?</p>
 							<textarea
-								className='bg-transparent border border-[#07373F] w-full h-[127px] mt-2 rounded-xl pl-2 pt-2 outline-none'
+								className='textarea'
 								placeholder='Textarea'
 								name='request'
 								id='request'
@@ -357,7 +366,7 @@ const AttendeeForm = ({
 						</div>
 					</section>
 
-					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5'>
+					<div className='btn-ctn'>
 						<Button
 							text='Back'
 							className={
@@ -367,7 +376,7 @@ const AttendeeForm = ({
 						/>
 						<Button
 							text='Get My Free Ticket'
-							className={'text-white bg-[#24A0B5] border-[#24A0B5]'}
+							className={'bg-[#24A0B5] border-[#24A0B5]'}
 							disabled={!formValidated}
 							onclick={handleAttendeeFormSubmission}
 						/>

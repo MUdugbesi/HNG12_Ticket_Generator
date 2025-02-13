@@ -10,7 +10,6 @@ import { AuthContext } from '../context/AuthContext';
 import MessageHandler from './message/MessageHandler';
 
 const TicketSelection = ({
-	isValidTicket,
 	setIsValidTicket,
 	setIsWelcomePage,
 	setIsFirstPage,
@@ -108,22 +107,26 @@ const TicketSelection = ({
 	}, [handleTicketSelection, isSubmitting]);
 
 	return (
-		<section className='w-[450px] md:w-[650px] lg:w-[700px] min-h-[858px] h-auto md:h-[858px] pb-5 mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23] relative'>
-			{message?.message && <MessageHandler userMessage={message} />}
-			<div className='w-[85%] md:w-[90%] lg:w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
+		<section className='ticket-main-container'>
+			<div className='ticket-form-container'>
+				{message?.message && <MessageHandler userMessage={message} />}
 				<Header title={'Ticket Selection'} step={'1/3'} width={'40%'} />
-
-				<form className='w-full min-h-[85%] h-auto m-auto border border-[#0E464F] rounded-3xl bg-[#08252B] max-md:p-2 my-10 pb-3'>
-					<div className='w-[90%] md:w-[556px] h-[200px] border border-[#07373F] mx-auto mt-5 rounded-3xl flex flex-col items-center justify-center px-2 pb-2'>
-						<h2 className='font-roadRage text-[32px] md:text-[62px]'>
-							Techember Fest ”25
-						</h2>
-						<p className='font-roboto text-[12px] md:text-[16px] text-center text-gray-400'>
-							Join us for an unforgettable experience at <br />
-							[Event Name]! Secure your spot now.
-						</p>
-						<p className='font-roboto text-[12px] md:text-[16px]  text-gray-400'>
+				<form className='ticket-form  md:w-[604px] md:h-[682px] mt-5 ticket-selection'>
+					<div className='fest-card-ctn'>
+						<div className='d-flex'>
+							<h2 className='font-roadRage text-[48px] md:text-[62px]'>
+								Techember Fest ”25
+							</h2>
+							<p className='text-center w-[239px] md:w-[340px] mx-auto'>
+								Join us for an unforgettable experience at [Event Name]! Secure
+								your spot now.
+							</p>
+						</div>
+						<p className='hidden md:flex'>
 							📍 [Event Location] || March 15, 2025 | 7:00pm
+						</p>
+						<p className='w-[160px] flex md:hidden'>
+							📍 [Event Location] March 15, 2025 | 7:00pm
 						</p>
 					</div>
 
@@ -131,10 +134,8 @@ const TicketSelection = ({
 						<ProgressLine />
 					</div>
 					<div className='w-full md:w-[556px] mx-auto'>
-						<p className='font-roboto text-gray-400 mb-2'>
-							Select Ticket Type:
-						</p>
-						<div className='grid grid-cols-1 md:grid-cols-3 w-full h-auto md:h-[142px] border border-[#07373F] rounded-2xl max-md:gap-3 p-1 max-md:py-3'>
+						<p className='mb-2'>Select Ticket Type:</p>
+						<div className='grid-plan-ctn'>
 							{ticketTypeData.map((ticket, i) => (
 								<Card
 									ticket={ticket}
@@ -147,10 +148,10 @@ const TicketSelection = ({
 					</div>
 
 					<div className='w-[95%] mx-auto relative mt-5'>
-						<p className='text-gray-400 pb-2'>Number of Tickets</p>
-						<IoIosArrowDown className='absolute text-white right-2 bottom-4' />
+						<p className='pb-2'>Number of Tickets</p>
+						<IoIosArrowDown className='absolute right-2 bottom-4' />
 						<select
-							className='w-full bg-transparent border-2 border-[#07373F] h-[48px] rounded-lg appearance-none text-gray-500 pl-2 outline-none'
+							className='w-full bg-transparent border-2 border-[#07373F] h-[48px] rounded-lg appearance-none pl-2 outline-none cursor-pointer'
 							onChange={handleSelectTicketNum}
 							value={ticketNum}
 						>
@@ -160,7 +161,7 @@ const TicketSelection = ({
 							<option>3</option>
 						</select>
 					</div>
-					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5 max-md:pb-4'>
+					<div className='btn-ctn'>
 						<Button
 							text='Cancel'
 							className={
@@ -171,7 +172,7 @@ const TicketSelection = ({
 						<Button
 							text='Next'
 							className={
-								'text-white bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'
+								'bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'
 							}
 							onclick={handleTicketSelection}
 							disabled={!isSubmitting}

@@ -68,7 +68,7 @@ const Input = ({
 	};
 
 	return (
-		<div className='flex flex-col justify-start mb-6 text-gray-400 relative'>
+		<div className='flex flex-col justify-start mb-6 relative'>
 			<label htmlFor={id} className='mb-2'>
 				{label}
 			</label>

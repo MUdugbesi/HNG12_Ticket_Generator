@@ -37,7 +37,7 @@ const TicketApp = () => {
 					setIsFirstPage={setIsFirstPage}
 				/>
 			)}
-			{isFirstPage && (
+			{!isFirstPage && (
 				<TicketSelection
 					isValidTicket={isValidTicket}
 					setIsValidTicket={setIsValidTicket}
@@ -48,7 +48,7 @@ const TicketApp = () => {
 					setMessage={setMessage}
 				/>
 			)}
-			{isSecondPage && (
+			{!isSecondPage && (
 				<AttendeeForm
 					message={message}
 					setMessage={setMessage}
@@ -58,7 +58,7 @@ const TicketApp = () => {
 					setTicketGenerated={setTicketGenerated}
 				/>
 			)}
-			{isLastPage && ticketGenerated && (
+			{!isLastPage && !ticketGenerated && (
 				<Ticket setIsFirstPage={setIsFirstPage} setIsLastPage={setIsLastPage} />
 			)}
 		</>
