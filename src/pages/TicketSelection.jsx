@@ -7,15 +7,12 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import { AuthContext } from '../context/AuthContext';
 import MessageHandler from '../components/message/MessageHandler';
+import { Navigate, useNavigate, useOutletContext } from 'react-router';
 
-const TicketSelection = ({
-	setIsValidTicket,
-	setIsWelcomePage,
-	setIsFirstPage,
-	setIsSecondPage,
-	message,
-	setMessage,
-}) => {
+const TicketSelection = () => {
+	const { setIsValidTicket, setMessage, message } = useOutletContext();
+	const navigate = useNavigate();
+
 	const { formData, setFormData } = useContext(AuthContext);
 	const [ticketType, setTicketType] = useState(null);
 	const [ticketNum, setTicketNum] = useState(0);
@@ -53,10 +50,16 @@ const TicketSelection = ({
 		setTicketNum(value);
 	};
 
-	const handleBackBtn = () => {
-		setIsFirstPage(false);
-		setIsWelcomePage(true);
-		sessionStorage.removeItem('formData');
+	const handleBackBtn = (e) => {
+		e.preventDefault();
+		if (
+			window.confirm(
+				'Are you sure you want to go cancel? Your form data will be lost.'
+			)
+		) {
+			sessionStorage.removeItem('formData');
+			navigate('/');
+		}
 	};
 
 	const handleTicketSelection = useCallback((e) => {
@@ -79,8 +82,7 @@ const TicketSelection = ({
 			}, 2000);
 
 			setTimeout(() => {
-				setIsFirstPage(false);
-				setIsSecondPage(true);
+				navigate('/attendee-form');
 			}, 4000);
 		} else {
 			setMessage({

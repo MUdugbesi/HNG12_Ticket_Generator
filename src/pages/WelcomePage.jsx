@@ -1,10 +1,11 @@
 import React from 'react';
-import Button from '../components/Button';
+import Button from '../components/Button'
+import { useNavigate } from 'react-router';
 
-const WelcomePage = ({ setIsFirstPage, setIsWelcomePage }) => {
+const WelcomePage = () => {
+	const navigate = useNavigate();
 	const handleclick = () => {
-		setIsWelcomePage(false);
-		setIsFirstPage(true);
+		navigate('/ticket-selection');
 	};
 	return (
 		<>

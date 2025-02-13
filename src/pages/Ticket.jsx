@@ -4,8 +4,10 @@ import Button from '../components/Button';
 import BarCode from '../components/Barcode';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { useNavigate } from 'react-router';
 
-const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
+const Ticket = () => {
+	const navigate = useNavigate();
 	const [userTicket, setUserTicket] = useState(null);
 	useEffect(() => {
 		const storedFormData = sessionStorage.getItem('formData');
@@ -14,7 +16,6 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 
 	useEffect(() => {
 		const timeout = setTimeout(() => handleTicketDownload(), 3000);
-
 		return () => clearTimeout(timeout);
 	}, []);
 
@@ -39,8 +40,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 	const handleAnotherTicket = () => {
 		sessionStorage.removeItem('formData');
 		sessionStorage.removeItem('file');
-		setIsFirstPage(true);
-		setIsLastPage(false);
+		navigate('/ticket-selection');
 	};
 
 	return (

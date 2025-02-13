@@ -14,16 +14,13 @@ import Button from '../components/Button';
 import { AuthContext } from '../context/AuthContext';
 import FilePreview from '../components/FilePreviewer';
 import MessageHandler from '../components/message/MessageHandler';
+import { useNavigate, useOutletContext } from 'react-router';
 
-const AttendeeForm = ({
-	message,
-	setMessage,
-	setIsFirstPage,
-	setIsSecondPage,
-	setIsLastPage,
-	setTicketGenerated,
-}) => {
+const AttendeeForm = () => {
 	const { formData, setFormData } = useContext(AuthContext);
+	const { message, setMessage, setTicketGenerated } = useOutletContext();
+	const navigate = useNavigate();
+
 	const [userDetails, setUserDetails] = useState({
 		fullName: '',
 		email: '',
@@ -228,9 +225,8 @@ const AttendeeForm = ({
 		}, 6000);
 
 		const timeout = setTimeout(() => {
-			setIsSecondPage(false);
-			setIsLastPage(true);
 			setTicketGenerated(true);
+			navigate('/ticket');
 		}, 6000);
 		return () => clearTimeout(timeout);
 	});
@@ -274,10 +270,8 @@ const AttendeeForm = ({
 
 	const handleBackBtn = (e) => {
 		e.preventDefault();
-		setIsFirstPage(true);
-		setIsSecondPage(false);
+		navigate(-1);
 	};
-	console.log(isBlurred);
 
 	return (
 		<section className='h-[1083px] mx-auto  ticket-main-container animate__animated animate__fadeInRight'>
