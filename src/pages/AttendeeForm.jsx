@@ -18,7 +18,8 @@ import { useNavigate, useOutletContext } from 'react-router';
 
 const AttendeeForm = () => {
 	const { formData, setFormData } = useContext(AuthContext);
-	const { message, setMessage, setTicketGenerated } = useOutletContext();
+	const { message, setMessage, setTicketGenerated, isValidTicket } =
+		useOutletContext();
 	const navigate = useNavigate();
 
 	const [userDetails, setUserDetails] = useState({
@@ -273,6 +274,14 @@ const AttendeeForm = () => {
 		e.preventDefault();
 		navigate(-1);
 	};
+
+	if (!isValidTicket) {
+		setMessage({
+			message: 'Unauthorized access, please select a ticket to view this page',
+			type: 'error',
+		});
+		navigate('/ticket-selection');
+	}
 
 	return (
 		<section className='h-[1083px] mx-auto  ticket-main-container animate__animated animate__fadeInRight'>
