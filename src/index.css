@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Jeju+Myeongjo&family=Roboto:ital,wght@0,100..900;1,100..900&family=Road+Rage&family=Alatsi&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		@apply m-0 p-0 box-border;
+	}
+
+	body {
+		background: radial-gradient(
+			circle,
+			rgba(3, 48, 56, 1) 0%,
+			rgba(2, 25, 29, 1) 100%
+		);
+		@apply w-[100vw] min-h-[100vh] h-auto flex justify-center items-center font-roboto text-[12px] md:text-[16px] text-gray-500 overflow-x-hidden;
+	}
+}
+
+@layer components {
+	.ticket {
+		background: radial-gradient(
+			circle,
+			rgba(7, 44, 49, 1) 0%,
+			rgba(7, 44, 49, 1) 100%
+		);
+		background-image: url('./assets/Subtract.png');
+	}
+}
