@@ -278,7 +278,7 @@ const AttendeeForm = ({
 	console.log(isBlurred);
 
 	return (
-		<section className='h-[1083px] mx-auto  ticket-main-container'>
+		<section className='h-[1083px] mx-auto  ticket-main-container animate__animated animate__fadeInRight'>
 			<div className='ticket-form-container'>
 				<Header width={'55%'} title={'Attendee Details'} step={'2/3'} />
 

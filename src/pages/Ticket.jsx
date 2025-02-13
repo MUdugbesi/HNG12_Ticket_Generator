@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import BarCode from '../components/Barcode';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 	const [userTicket, setUserTicket] = useState(null);
 	useEffect(() => {
@@ -9,8 +12,33 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 		setUserTicket(JSON.parse(storedFormData));
 	}, []);
 
+	useEffect(() => {
+		const timeout = setTimeout(() => handleTicketDownload(), 3000);
+
+		return () => clearTimeout(timeout);
+	}, []);
+
+	const handleTicketDownload = async () => {
+		const isConfirmed = window.confirm(
+			'Are you sure you want to download the ticket as a PDF?'
+		);
+
+		if (!isConfirmed) return;
+		const ticketElm = document.getElementById('ticket-container');
+		if (!ticketElm) return;
+
+		const canvas = await html2canvas(ticketElm, { useCORS: true });
+		const imgData = canvas.toDataURL('image/png');
+
+		const pdf = new jsPDF('p', 'mm', 'a4');
+		pdf.addImage(imgData, 'PNG', 10, 10, 120, 250, 'Techember-Ticket');
+
+		pdf.save('ticket.pdf');
+	};
+
 	const handleAnotherTicket = () => {
 		sessionStorage.removeItem('formData');
+		sessionStorage.setItem('formData', '{}');
 		sessionStorage.removeItem('file');
 		setIsFirstPage(true);
 		setIsLastPage(false);
@@ -18,7 +46,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 
 	return (
 		<>
-			<section className='ticket-main-container h-[1056px]'>
+			<section className='ticket-main-container h-[1056px] animate__animated animate__fadeInRight'>
 				<div className='w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
 					<Header width={'100%'} title={'Ready'} step={'3/3'} />
 
@@ -33,7 +61,10 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 							</p>
 						</div>
 
-						<section className='mt-16 w-[300px] h-[600px] mx-auto ticket relative d-flex'>
+						<section
+							className='mt-16 w-[300px] h-[600px] mx-auto ticket relative d-flex'
+							id='ticket-container'
+						>
 							<div className='w-[260px] h-[446px] mx-auto border border-[#24A0B5] mt-3 rounded-2xl absolute top-4'>
 								<div className='d-flex'>
 									<h2 className='font-roadRage text-[34px]'>
@@ -106,6 +137,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 								className={
 									' bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5e2]'
 								}
+								onclick={handleTicketDownload}
 							/>
 						</div>
 					</section>

@@ -4,7 +4,8 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 const PageHeader = () => {
 	return (
-		<nav className='w-[320px] md:w-[1200px] h-[68px] md:h-[76px] border border-[#197686] flex justify-between items-center px-[16px] py-[12px] mx-auto rounded-3xl font-jejumyeongo mt-10'>
+		<nav className='w-[320px] md:w-[1200px] h-[68px] md:h-[76px] border border-[#197686] flex justify-between items-center px-[16px] py-[12px] mx-auto rounded-3xl font-jejumyeongo mt-10 animate__animated animate__fadeInUp
+ '>
 			<div className='flex gap-3'>
 				<img
 					src='/ticketLogo.png'

@@ -3,7 +3,7 @@ import TicketApp from './pages/TicketApp';
 
 const App = () => {
 	return (
-		<main>
+		<main >
 			<TicketApp />
 		</main>
 	);
