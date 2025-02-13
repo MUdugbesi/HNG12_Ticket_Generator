@@ -38,7 +38,6 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 
 	const handleAnotherTicket = () => {
 		sessionStorage.removeItem('formData');
-		sessionStorage.setItem('formData', '{}');
 		sessionStorage.removeItem('file');
 		setIsFirstPage(true);
 		setIsLastPage(false);
