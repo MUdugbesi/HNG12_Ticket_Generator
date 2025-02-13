@@ -108,12 +108,12 @@ const TicketSelection = ({
 	}, [handleTicketSelection, isSubmitting]);
 
 	return (
-		<section className='w-[450px] md:w-[650px] lg:w-[700px] h-[858px] mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23] relative'>
+		<section className='w-[450px] md:w-[650px] lg:w-[700px] min-h-[858px] h-auto md:h-[858px] pb-5 mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23] relative'>
 			{message?.message && <MessageHandler userMessage={message} />}
 			<div className='w-[85%] md:w-[90%] lg:w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
 				<Header title={'Ticket Selection'} step={'1/3'} width={'40%'} />
 
-				<form className='w-full h-[80%] m-auto border border-[#0E464F] rounded-3xl bg-[#08252B] max-md:p-2'>
+				<form className='w-full min-h-[85%] h-auto m-auto border border-[#0E464F] rounded-3xl bg-[#08252B] max-md:p-2 my-10 pb-3'>
 					<div className='w-[90%] md:w-[556px] h-[200px] border border-[#07373F] mx-auto mt-5 rounded-3xl flex flex-col items-center justify-center px-2 pb-2'>
 						<h2 className='font-roadRage text-[32px] md:text-[62px]'>
 							Techember Fest ”25
@@ -134,7 +134,7 @@ const TicketSelection = ({
 						<p className='font-roboto text-gray-400 mb-2'>
 							Select Ticket Type:
 						</p>
-						<div className='grid grid-cols-3 w-full h-[120px] md:h-[142px] border border-[#07373F] rounded-3xl max-md:gap-1 p-1'>
+						<div className='grid grid-cols-1 md:grid-cols-3 w-full h-auto md:h-[142px] border border-[#07373F] rounded-2xl max-md:gap-3 p-1 max-md:py-3'>
 							{ticketTypeData.map((ticket, i) => (
 								<Card
 									ticket={ticket}
@@ -160,10 +160,12 @@ const TicketSelection = ({
 							<option>3</option>
 						</select>
 					</div>
-					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5'>
+					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5 max-md:pb-4'>
 						<Button
 							text='Cancel'
-							className={'text-[#24A0B5] border-[#24A0B5] hover:text-opacity-70'}
+							className={
+								'text-[#24A0B5] border-[#24A0B5] hover:text-opacity-70'
+							}
 							onclick={handleBackBtn}
 						/>
 						<Button
