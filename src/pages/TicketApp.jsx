@@ -4,6 +4,7 @@ import AttendeeForm from '../components/AttendeeForm';
 import Ticket from '../components/Ticket';
 import { AuthContext } from '../context/AuthContext';
 import WelcomePage from './WelcomePage';
+import Barcode from '../components/Barcode';
 
 const TicketApp = () => {
 	const { formData, setFormData } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const TicketApp = () => {
 					setIsFirstPage={setIsFirstPage}
 				/>
 			)}
-			{!isFirstPage && (
+			{isFirstPage && (
 				<TicketSelection
 					isValidTicket={isValidTicket}
 					setIsValidTicket={setIsValidTicket}
@@ -48,7 +49,7 @@ const TicketApp = () => {
 					setMessage={setMessage}
 				/>
 			)}
-			{!isSecondPage && (
+			{isSecondPage && (
 				<AttendeeForm
 					message={message}
 					setMessage={setMessage}
@@ -58,9 +59,10 @@ const TicketApp = () => {
 					setTicketGenerated={setTicketGenerated}
 				/>
 			)}
-			{!isLastPage && !ticketGenerated && (
+			{isLastPage && ticketGenerated && (
 				<Ticket setIsFirstPage={setIsFirstPage} setIsLastPage={setIsLastPage} />
 			)}
+
 		</>
 	);
 };

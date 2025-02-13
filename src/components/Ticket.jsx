@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Button from './Button';
-import Barcode from '../assets/Barcode.png';
-
+import BarCode from './Barcode';
 const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 	const [userTicket, setUserTicket] = useState(null);
 	useEffect(() => {
@@ -42,9 +41,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 									<p className='text-[10px] text-center'>
 										📍 04 Rumens road, Ikoyi, Lagos
 									</p>
-									<p className='text-[10px] mt-1'>
-										📆 March 15, 2025 | 7:00pm
-									</p>
+									<p className='text-[10px] mt-1'>📆 March 15, 2025 | 7:00pm</p>
 								</div>
 
 								<img
@@ -91,8 +88,8 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 									</div>
 								</section>
 							</div>
-							<div className='w-[236px] h-[68px] absolute bottom-5'>
-								<img src={Barcode} alt='bar_code' />
+							<div className='w-[236px] h-[68px] absolute bottom-10'>
+								<BarCode />
 							</div>
 						</section>
 
