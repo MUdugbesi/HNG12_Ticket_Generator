@@ -356,7 +356,7 @@ const AttendeeForm = ({
 						{message?.message && (
 							<MessageHandler
 								userMessage={message}
-								className={'flex md:hidden -top-10'}
+								className={'flex md:hidden -top-10 right-0'}
 							/>
 						)}
 					</div>

@@ -5,7 +5,7 @@ const MessageHandler = ({ userMessage, className }) => {
 	const { type, message } = userMessage;
 	return (
 		<p
-			className={`absolute mt-2 right-4 text-[10px] md:text-[12px]  ${
+			className={`absolute mt-2 right-4 text-[12px]  ${
 				type === 'error' ? 'text-red-500' : 'text-green-500'
 			} ${className ? className : 'top-0 md:top-0'}`}
 			aria-live='assertive'

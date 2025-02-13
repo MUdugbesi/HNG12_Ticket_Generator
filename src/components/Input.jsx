@@ -91,7 +91,7 @@ const Input = ({
 				onBlur={(e) => setError(validateInput(e))}
 				{...props}
 			/>
-			{error?.message && <MessageHandler userMessage={error} />}
+			{error?.message && <MessageHandler userMessage={error} className={'-right-2'}/>}
 			{type === 'email' && (
 				<BiEnvelope className='w-[24px] h-[24px] absolute top-[38px] md:top-[45px] left-2' />
 			)}

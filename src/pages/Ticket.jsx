@@ -11,6 +11,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 
 	const handleAnotherTicket = () => {
 		sessionStorage.removeItem('formData');
+		sessionStorage.removeItem('file');
 		setIsFirstPage(true);
 		setIsLastPage(false);
 	};
@@ -82,8 +83,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 									<div>
 										<p className='text-[10px] py-2'>Special request?</p>
 										<p className='text-[10px]'>
-											{userTicket?.request ||
-												'Nil'}
+											{userTicket?.request || 'Nil'}
 										</p>
 									</div>
 								</section>
