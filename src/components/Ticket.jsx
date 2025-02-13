@@ -99,12 +99,14 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 						<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-16 gap-5'>
 							<Button
 								text='Book Another Ticket'
-								className={'text-[#24A0B5] border-[#24A0B5]'}
+								className={
+									'text-[#24A0B5] border-[#24A0B5] hover:text-opacity-70'
+								}
 								onclick={handleAnotherTicket}
 							/>
 							<Button
 								text='Download Ticket'
-								className={'text-white bg-[#24A0B5] border-[#24A0B5]'}
+								className={'text-white bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5e2]'}
 							/>
 						</div>
 					</section>

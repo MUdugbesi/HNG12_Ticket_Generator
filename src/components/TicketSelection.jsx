@@ -163,7 +163,7 @@ const TicketSelection = ({
 					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5'>
 						<Button
 							text='Cancel'
-							className={'text-[#24A0B5] border-[#24A0B5]'}
+							className={'text-[#24A0B5] border-[#24A0B5] hover:text-opacity-70'}
 							onclick={handleBackBtn}
 						/>
 						<Button

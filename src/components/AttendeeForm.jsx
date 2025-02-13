@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react';
 import Header from './Header';
 import Input from './Input';
 import uploadImg from '../assets/upload.svg';
@@ -31,13 +37,18 @@ const AttendeeForm = ({
 
 	// form validation
 	const [formValidated, setFormValidated] = useState(false);
-	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	const emailRegex = useMemo(
+		() => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+		[]
+	);
 
 	//form submission
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	useEffect(() => {
 		const updatedData = sessionStorage.getItem('formData');
+		const storedFile = sessionStorage.getItem('file');
+
 		if (updatedData) {
 			try {
 				const { fullName, email, request } = JSON.parse(updatedData);
@@ -48,6 +59,7 @@ const AttendeeForm = ({
 						request,
 					});
 				}
+				if (storedFile) setImageFile(storedFile);
 			} catch (e) {
 				console.error('Error parsing sessionStorage data:', e);
 			}
@@ -64,6 +76,13 @@ const AttendeeForm = ({
 		) {
 			setImageFile(selectedFile);
 			setMessage({ message: 'File successfully uploaded!', type: 'success' });
+
+			// handle file storage in session
+			const reader = new FileReader();
+			reader.readAsDataURL(selectedFile);
+			reader.onload = () => {
+				sessionStorage.setItem('file', reader.result);
+			};
 		} else {
 			if (
 				(selectedFile && selectedFile?.type !== 'image/png') ||
@@ -114,7 +133,6 @@ const AttendeeForm = ({
 		}
 
 		// If no errors, return true indicating form is valid
-
 		if (isValidForm) {
 			setFormValidated(true);
 			setMessage(null);
@@ -210,7 +228,6 @@ const AttendeeForm = ({
 
 				if (isSubmitting) return;
 				const isValidForm = validateForm();
-				console.log(isValidForm);
 				if (!isValidForm) {
 					setMessage({ message: 'Form not validated', type: 'error' });
 					return;
@@ -335,6 +352,7 @@ const AttendeeForm = ({
 								id='request'
 								value={userDetails.request}
 								onChange={handleChange}
+								maxLength={50}
 							></textarea>
 						</div>
 					</section>
@@ -342,7 +360,9 @@ const AttendeeForm = ({
 					<div className='w-[95%] justify-centers items-center mx-auto h-[48px] flex mt-8 gap-5'>
 						<Button
 							text='Back'
-							className={'text-[#24A0B5] border-[#24A0B5]'}
+							className={
+								'text-[#24A0B5] border-[#24A0B5] hover:text-opacity-70'
+							}
 							onclick={handleBackBtn}
 						/>
 						<Button
