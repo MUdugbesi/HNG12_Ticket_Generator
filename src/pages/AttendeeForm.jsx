@@ -37,6 +37,7 @@ const AttendeeForm = ({
 
 	// form validation
 	const [formValidated, setFormValidated] = useState(false);
+	const [isBlurred, setIsBlurred] = useState(false);
 	const emailRegex = useMemo(
 		() => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
 		[]
@@ -131,6 +132,16 @@ const AttendeeForm = ({
 				message: 'Full name must be at least 5 characters.',
 				type: 'error',
 			});
+		}
+
+		if (userDetails.request.length) {
+			if (userDetails.request.length <= 5) {
+				isValidForm = false;
+				setMessage({
+					message: 'Request must be at least 5 characters.',
+					type: 'error',
+				});
+			}
 		}
 
 		// If no errors, return true indicating form is valid
@@ -252,11 +263,19 @@ const AttendeeForm = ({
 		validateForm,
 	]);
 
+	// handle validation on form blur
+	useEffect(() => {
+		if (isBlurred) {
+			validateForm();
+		}
+	}, [isBlurred, validateForm]);
+
 	const handleBackBtn = (e) => {
 		e.preventDefault();
 		setIsFirstPage(true);
 		setIsSecondPage(false);
 	};
+	console.log(isBlurred);
 
 	return (
 		<section className='h-[1083px] mx-auto  ticket-main-container'>
@@ -264,12 +283,15 @@ const AttendeeForm = ({
 				<Header width={'55%'} title={'Attendee Details'} step={'2/3'} />
 
 				{message?.message && (
-					<MessageHandler userMessage={message} className={'hidden md:flex'} />
+					<MessageHandler
+						userMessage={message}
+						className={'hidden md:flex top-4'}
+					/>
 				)}
 				<form
 					className='ticket-form h-[907px] attendee-form'
 					noValidate
-					onBlur={validateForm}
+					onBlur={() => setIsBlurred(true)}
 				>
 					<div className='card-ctn'>
 						<p className='max-md:pt-3 pb-3'>Upload Profile Photo</p>
@@ -370,6 +392,8 @@ const AttendeeForm = ({
 								value={userDetails.request}
 								onChange={handleChange}
 								maxLength={50}
+								minLength={10}
+								rows={3}
 							></textarea>
 						</div>
 					</section>
@@ -384,7 +408,7 @@ const AttendeeForm = ({
 						/>
 						<Button
 							text='Get My Free Ticket'
-							className={'bg-[#24A0B5] border-[#24A0B5]'}
+							className={'bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'}
 							disabled={!formValidated}
 							onclick={handleAttendeeFormSubmission}
 						/>

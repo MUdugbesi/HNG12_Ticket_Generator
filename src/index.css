@@ -61,7 +61,7 @@
 	}
 
 	.nav-item {
-		@apply text-gray-400;
+		@apply text-gray-400 hover:text-white;
 	}
 	.active-nav {
 		@apply text-white;

@@ -109,7 +109,7 @@ const TicketSelection = ({
 		<section className='ticket-main-container'>
 			<div className='ticket-form-container'>
 				{message?.message && (
-					<MessageHandler userMessage={message} className={'hidden md:flex'} />
+					<MessageHandler userMessage={message} className={'hidden md:flex top-4'} />
 				)}
 				<Header title={'Ticket Selection'} step={'1/3'} width={'40%'} />
 				<form className='ticket-form  md:w-[604px] md:h-[682px] mt-5 ticket-selection'>

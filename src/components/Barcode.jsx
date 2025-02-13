@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { genRandBarCode } from '../utils';
 
 const Barcode = () => {
 	const barCount = 33;
+	const [firstDigit, setFirstDigit] = useState(null);
+	const [barCodeOne, setBarCodeOne] = useState('');
+	const [barCodeTwo, setBarCodeTwo] = useState('');
+
+	useEffect(() => {
+		setFirstDigit(genRandBarCode(1));
+		setBarCodeOne(genRandBarCode());
+		setBarCodeTwo(genRandBarCode());
+	}, []);
 
 	return (
 		<section className='w-[236px]'>
@@ -35,9 +45,9 @@ const Barcode = () => {
 				})}
 			</div>
 			<div className='flex justify-evenly w-full tracking-9 text-[12px] mt-2'>
-				<p>1</p>
-				<p>234567</p>
-				<p>891026</p>
+				<p>{firstDigit}</p>
+				<p className='tracking-widest'>{barCodeOne}</p>
+				<p className='tracking-widest'>{barCodeTwo}</p>
 			</div>
 		</section>
 	);

@@ -83,7 +83,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 										<p className='text-[10px] py-2'>Special request?</p>
 										<p className='text-[10px]'>
 											{userTicket?.request ||
-												'Nil ? Or the users sad story they write in there gets this whole space, Max of three rows'}
+												'Nil'}
 										</p>
 									</div>
 								</section>

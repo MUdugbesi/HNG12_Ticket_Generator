@@ -32,6 +32,7 @@ const WelcomePage = ({ setIsFirstPage, setIsWelcomePage }) => {
 					</div>
 				</div>
 			</section>
+		
 		</>
 	);
 };
