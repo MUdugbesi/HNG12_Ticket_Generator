@@ -226,6 +226,7 @@ const AttendeeForm = () => {
 
 		const timeout = setTimeout(() => {
 			setTicketGenerated(true);
+			sessionStorage.setItem('ticketGenerated', JSON.stringify(true));
 			navigate('/ticket');
 		}, 6000);
 		return () => clearTimeout(timeout);

@@ -37,6 +37,7 @@ const RootLayout = () => {
 					setIsValidTicket,
 					message,
 					setMessage,
+					ticketGenerated,
 					setTicketGenerated,
 				}}
 			/>

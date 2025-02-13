@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from '../components/Button'
-import { useNavigate } from 'react-router';
+import Button from '../components/Button';
+import { useNavigate, useOutletContext } from 'react-router';
+import MessageHandler from '../components/message/MessageHandler';
 
 const WelcomePage = () => {
 	const navigate = useNavigate();
@@ -11,6 +12,7 @@ const WelcomePage = () => {
 		<>
 			<section className='ticket-main-container max-md:h-[600px] max-md:w-[90%] relative  animate__animated animate__fadeIn'>
 				<div className='ticket-form-container'>
+					
 					<div className='w-full h-[80%] m-auto  border-none md:border border-[#0E464F] rounded-3xl bg-[#08252B] flex justify-between md:justify-evenly flex-col '>
 						<h1 className='font-roadRage text-[32px] md:text-[64px] text-center fest-card-ctn w-[292px] md:w-[506px]'>
 							Welcome to the Ultimate Ticket Generator App

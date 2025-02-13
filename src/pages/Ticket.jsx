@@ -4,13 +4,22 @@ import Button from '../components/Button';
 import BarCode from '../components/Barcode';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { useNavigate } from 'react-router';
+import { useNavigate, useOutletContext } from 'react-router';
+import MessageHandler from '../components/message/MessageHandler';
+import { toast } from 'react-toastify';
 
 const Ticket = () => {
+	const { ticketGenerated, setTicketGenerated, setMessage } =
+		useOutletContext();
 	const navigate = useNavigate();
 	const [userTicket, setUserTicket] = useState(null);
 	useEffect(() => {
 		const storedFormData = sessionStorage.getItem('formData');
+		const storedTickedGenerated = sessionStorage.getItem('ticketGenerated');
+
+		if (storedTickedGenerated) {
+			setTicketGenerated(JSON.parse(storedTickedGenerated));
+		}
 		setUserTicket(JSON.parse(storedFormData));
 	}, []);
 
@@ -40,15 +49,23 @@ const Ticket = () => {
 	const handleAnotherTicket = () => {
 		sessionStorage.removeItem('formData');
 		sessionStorage.removeItem('file');
+		sessionStorage.removeItem('ticketGenerated')
 		navigate('/ticket-selection');
 	};
+
+	if (!ticketGenerated) {
+		setMessage({
+			message: 'You do not have any active / generated ticket, select a ticket?',
+			type: 'error',
+		});
+		navigate('/ticket-selection');
+	}
 
 	return (
 		<>
 			<section className='ticket-main-container h-[1056px] animate__animated animate__fadeInRight'>
 				<div className='w-[85%] h-[98%] m-auto flex flex-col justify-evenly'>
 					<Header width={'100%'} title={'Ready'} step={'3/3'} />
-
 					<section className='w-full h-[85%] m-auto'>
 						<div className='w-full text-center'>
 							<h3 className='text-[24px] md:text-[32px] font-alatsi'>
