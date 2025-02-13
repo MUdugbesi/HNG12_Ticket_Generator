@@ -99,7 +99,7 @@ const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 										<div className='border-r border-b pb-1 border-[#12464E] flex justify-evenly items-start flex-col'>
 											<p className='text-[10px]'>Ticket type</p>
 											<p className='text-[8px] '>
-												{userTicket?.['ticketType'].plan}
+												{userTicket?.['ticketType'].access}
 											</p>
 										</div>
 										<div className='border-b pl-2 border-[#12464E] flex justify-evenly items-start flex-col'>

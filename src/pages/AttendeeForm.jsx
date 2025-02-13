@@ -73,7 +73,8 @@ const AttendeeForm = ({
 		if (
 			selectedFile &&
 			(selectedFile.type === 'image/png' ||
-				selectedFile.type === 'image/jpg' || selectedFile.type === 'image/jpeg') &&
+				selectedFile.type === 'image/jpg' ||
+				selectedFile.type === 'image/jpeg') &&
 			selectedFile.size < 5000000
 		) {
 			setImageFile(selectedFile);
@@ -88,7 +89,8 @@ const AttendeeForm = ({
 		} else {
 			if (
 				(selectedFile && selectedFile?.type !== 'image/png') ||
-				selectedFile?.type !== 'image/jpg' || selectedFile.type === 'image/jpeg'
+				selectedFile?.type !== 'image/jpg' ||
+				selectedFile.type === 'image/jpeg'
 			) {
 				setMessage({
 					message: 'Wrong image type - upload the right type',
