@@ -85,7 +85,7 @@ const Input = ({
 				aria-required={isRequired}
 				className={`${
 					className ? className : 'pl-2'
-				} w-full h-[48px] bg-transparent border border-[#07373F] rounded-xl outline-none caret-slate-500`}
+				} w-full h-[48px] bg-transparent border border-[#07373F] rounded-xl outline-none caret-slate-500 focus-visible:outline-[#041E23]`}
 				required={isRequired}
 				onChange={onChange}
 				onBlur={(e) => setError(validateInput(e))}

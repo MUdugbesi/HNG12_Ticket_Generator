@@ -5,15 +5,15 @@ import React, {
 	useMemo,
 	useState,
 } from 'react';
-import Header from './Header';
-import Input from './Input';
+import Header from '../components/Header';
+import Input from '../components/Input';
 import uploadImg from '../assets/upload.svg';
 import changeImg from '../assets/change.svg';
-import ProgressLine from './ProgressLine';
-import Button from './Button';
+import ProgressLine from '../components/ProgressLine';
+import Button from '../components/Button';
 import { AuthContext } from '../context/AuthContext';
-import FilePreview from './FilePreviewer';
-import MessageHandler from './message/MessageHandler';
+import FilePreview from '../components/FilePreviewer';
+import MessageHandler from '../components/message/MessageHandler';
 
 const AttendeeForm = ({
 	message,
@@ -73,7 +73,7 @@ const AttendeeForm = ({
 			selectedFile &&
 			(selectedFile.type === 'image/png' ||
 				selectedFile.type === 'image/jpg') &&
-			selectedFile.size < 2000000
+			selectedFile.size < 5000000
 		) {
 			setImageFile(selectedFile);
 			setMessage({ message: 'File successfully uploaded!', type: 'success' });
@@ -94,9 +94,9 @@ const AttendeeForm = ({
 					type: 'error',
 				});
 			}
-			if (selectedFile && selectedFile?.size > 2000000) {
+			if (selectedFile && selectedFile?.size > 5000000) {
 				setMessage({
-					message: 'Image size is over 2MB, retry?',
+					message: 'Image size is over 5MB, retry?',
 					type: 'error',
 				});
 			}
@@ -205,7 +205,7 @@ const AttendeeForm = ({
 			});
 		}, 2000);
 		setTimeout(() => {
-			setMessage({ message: 'Generating Ticket', type: 'success' });
+			setMessage({ message: 'Generating Ticket...', type: 'success' });
 		}, 4000);
 		setTimeout(() => {
 			setMessage({
@@ -263,7 +263,9 @@ const AttendeeForm = ({
 			<div className='ticket-form-container'>
 				<Header width={'55%'} title={'Attendee Details'} step={'2/3'} />
 
-				{message?.message && <MessageHandler userMessage={message} />}
+				{message?.message && (
+					<MessageHandler userMessage={message} className={'hidden md:flex'} />
+				)}
 				<form
 					className='ticket-form h-[907px] attendee-form'
 					noValidate
@@ -275,10 +277,7 @@ const AttendeeForm = ({
 							<div className='upload-img-ctn'>
 								{!imageFile ? (
 									<>
-										<label
-											htmlFor='dropzone'
-											className='d-flex gap-3'
-										>
+										<label htmlFor='dropzone' className='d-flex gap-3'>
 											<img
 												src={uploadImg}
 												alt='upload'
@@ -294,10 +293,10 @@ const AttendeeForm = ({
 										{
 											<MessageHandler
 												userMessage={{
-													message: 'Accepted formats [jpg/jpeg/png] under 2MB!',
+													message: 'Accepted formats [jpg/jpeg/png] under 5MB!',
 													type: 'error',
 												}}
-												className={'bottom-2 text-[9px]'}
+												className={'bottom-2 text-[9px] text-center'}
 											/>
 										}
 									</>
@@ -331,6 +330,15 @@ const AttendeeForm = ({
 						<ProgressLine />
 					</div>
 
+					<div className='relative'>
+						{message?.message && (
+							<MessageHandler
+								userMessage={message}
+								className={'flex md:hidden -top-10'}
+							/>
+						)}
+					</div>
+
 					<section className='w-[95%] mx-auto'>
 						<Input
 							type={'text'}
@@ -355,7 +363,7 @@ const AttendeeForm = ({
 						<div className='mt-4'>
 							<p>Special request?</p>
 							<textarea
-								className='textarea'
+								className='textarea focus-visible:outline-[#041E23]'
 								placeholder='Textarea'
 								name='request'
 								id='request'

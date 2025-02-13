@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import TicketSelection from '../components/TicketSelection';
-import AttendeeForm from '../components/AttendeeForm';
-import Ticket from '../components/Ticket';
+import TicketSelection from './TicketSelection';
+import AttendeeForm from './AttendeeForm';
+import Ticket from './Ticket';
 import { AuthContext } from '../context/AuthContext';
 import WelcomePage from './WelcomePage';
-import Barcode from '../components/Barcode';
+import PageHeader from '../components/PageHeader';
 
 const TicketApp = () => {
 	const { formData, setFormData } = useContext(AuthContext);
@@ -25,13 +25,17 @@ const TicketApp = () => {
 
 	useEffect(() => {
 		if (message?.message) {
-			const timeout = setTimeout(() => setMessage(null), 2000);
+			const timeout = setTimeout(
+				() => setMessage(null),
+				isFirstPage ? 2000 : 5000
+			);
 			return () => clearTimeout(timeout);
 		}
 	}, [message]);
 
 	return (
 		<>
+			{!isWelcomePage && <PageHeader />}
 			{isWelcomePage && (
 				<WelcomePage
 					setIsWelcomePage={setIsWelcomePage}
@@ -62,7 +66,13 @@ const TicketApp = () => {
 			{isLastPage && ticketGenerated && (
 				<Ticket setIsFirstPage={setIsFirstPage} setIsLastPage={setIsLastPage} />
 			)}
-
+			{isWelcomePage && (
+				<p className='text-gray-500 text-center text-[10px]'>
+					UI by @AviOfLagos
+					<br />
+					Built by @sparkleking
+				</p>
+			)}
 		</>
 	);
 };

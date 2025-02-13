@@ -41,7 +41,7 @@
 		@apply w-full h-auto m-auto border-none md:border border-[#0E464F] rounded-3xl bg-[#08252B];
 	}
 
-	.ticket-form .fest-card-ctn {
+	.fest-card-ctn {
 		@apply w-[287px] md:w-[556px] h-[243px] md:h-[200px] border border-[#07373F] mx-auto mt-5 rounded-3xl flex flex-col items-center justify-around px-2 pb-2 bg-[radial-gradient(circle,_rgba(7,55,63,1)_0%,_rgba(10,12,17,0.2)_100%)];
 	}
 	.grid-plan-ctn {
@@ -59,6 +59,13 @@
 	.btn-ctn {
 		@apply w-[95%] justify-center items-center mx-auto h-[112px] md:h-[48px] flex flex-col md:flex-row mt-8 gap-5;
 	}
+
+	.nav-item {
+		@apply text-gray-400;
+	}
+	.active-nav {
+		@apply text-white;
+	}
 }
 
 @layer utilities {
@@ -66,7 +73,7 @@
 		@apply flex flex-col justify-center items-center;
 	}
 
-	.textarea{
-		@apply bg-transparent border border-[#07373F] w-full h-[127px] mt-2 rounded-xl pl-2 pt-2 outline-none
+	.textarea {
+		@apply bg-transparent border border-[#07373F] w-full h-[127px] mt-2 rounded-xl pl-2 pt-2 outline-none;
 	}
 }

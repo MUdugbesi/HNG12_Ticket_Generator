@@ -1,13 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import ProgressLine from './ProgressLine';
-import Card from './Card';
+import ProgressLine from '../components/ProgressLine';
+import Card from '../components/Card';
 import { ticketTypeData } from '../utils';
-import Input from './Input';
 import { IoIosArrowDown } from 'react-icons/io';
-import Button from './Button';
-import Header from './Header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 import { AuthContext } from '../context/AuthContext';
-import MessageHandler from './message/MessageHandler';
+import MessageHandler from '../components/message/MessageHandler';
 
 const TicketSelection = ({
 	setIsValidTicket,
@@ -109,7 +108,9 @@ const TicketSelection = ({
 	return (
 		<section className='ticket-main-container'>
 			<div className='ticket-form-container'>
-				{message?.message && <MessageHandler userMessage={message} />}
+				{message?.message && (
+					<MessageHandler userMessage={message} className={'hidden md:flex'} />
+				)}
 				<Header title={'Ticket Selection'} step={'1/3'} width={'40%'} />
 				<form className='ticket-form  md:w-[604px] md:h-[682px] mt-5 ticket-selection'>
 					<div className='fest-card-ctn'>
@@ -161,6 +162,9 @@ const TicketSelection = ({
 							<option>3</option>
 						</select>
 					</div>
+					<div className='relative flex md:hidden'>
+						{message?.message && <MessageHandler userMessage={message} />}
+					</div>
 					<div className='btn-ctn'>
 						<Button
 							text='Cancel'
@@ -172,7 +176,7 @@ const TicketSelection = ({
 						<Button
 							text='Next'
 							className={
-								'bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'
+								' bg-[rgb(36,160,181)] border-[#24A0B5] hover:bg-[#249fb5c0]'
 							}
 							onclick={handleTicketSelection}
 							disabled={!isSubmitting}

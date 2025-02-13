@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header';
-import Button from './Button';
-import BarCode from './Barcode';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import BarCode from '../components/Barcode';
 const Ticket = ({ setIsFirstPage, setIsLastPage }) => {
 	const [userTicket, setUserTicket] = useState(null);
 	useEffect(() => {

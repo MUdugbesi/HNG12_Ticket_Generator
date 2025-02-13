@@ -8,10 +8,10 @@ const WelcomePage = ({ setIsFirstPage, setIsWelcomePage }) => {
 	};
 	return (
 		<>
-			<section className='w-[450px] md:w-[650px] lg:w-[700px] h-[858px] mx-auto m-auto border border-[#0E464F] rounded-3xl flex flex-col justify-center text-white bg-[#041E23] relative'>
-				<div className='w-[85%] h-[98%] m-auto flex flex-col justify-evenly items-center'>
-					<div className='w-full h-[80%] m-auto border border-[#0E464F] rounded-3xl bg-[#08252B] flex justify-evenly flex-col'>
-						<h1 className='font-roadRage w-[75%] md:w-[80%] border mx-auto text-[40px] md:text-[64px] border-[#07373F] rounded-3xl text-center px-2 py-10 md:px-2 md:py-2 drop-shadow-[5px_5px_5px_black]'>
+			<section className='ticket-main-container max-md:h-[600px] max-md:w-[90%] relative'>
+				<div className='ticket-form-container'>
+					<div className='w-full h-[80%] m-auto  border-none md:border border-[#0E464F] rounded-3xl bg-[#08252B] flex justify-between md:justify-evenly flex-col '>
+						<h1 className='font-roadRage text-[32px] md:text-[64px] text-center fest-card-ctn w-[292px] md:w-[506px]'>
 							Welcome to the Ultimate Ticket Generator App
 						</h1>
 						<p className='text-center text-gray-400 text-[16px] w-[85%] mx-auto'>
