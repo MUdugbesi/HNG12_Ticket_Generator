@@ -393,7 +393,7 @@ const AttendeeForm = () => {
 						<div className='mt-4'>
 							<p>Special request?</p>
 							<textarea
-								className='textarea focus-visible:outline-[#041E23]'
+								className='textarea focus-visible:outline-[#24A0B5]'
 								placeholder='Textarea'
 								name='request'
 								id='request'

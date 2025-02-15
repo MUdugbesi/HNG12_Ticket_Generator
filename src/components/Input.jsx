@@ -85,13 +85,15 @@ const Input = ({
 				aria-required={isRequired}
 				className={`${
 					className ? className : 'pl-2'
-				} w-full h-[48px] bg-transparent border border-[#07373F] rounded-xl outline-none caret-slate-500 focus-visible:outline-[#041E23]`}
+				} w-full h-[48px] bg-transparent border border-[#07373F] rounded-xl outline-none caret-slate-500 focus-visible:outline-[#24A0B5]`}
 				required={isRequired}
 				onChange={onChange}
 				onBlur={(e) => setError(validateInput(e))}
 				{...props}
 			/>
-			{error?.message && <MessageHandler userMessage={error} className={'-right-2'}/>}
+			{error?.message && (
+				<MessageHandler userMessage={error} className={'-right-2'} />
+			)}
 			{type === 'email' && (
 				<BiEnvelope className='w-[24px] h-[24px] absolute top-[38px] md:top-[45px] left-2' />
 			)}
