@@ -181,7 +181,7 @@ const TicketSelection = () => {
 						<Button
 							text='Next'
 							className={
-								' bg-[rgb(36,160,181)] border-[#24A0B5] hover:bg-[#249fb5c0]'
+								' bg-[#24a0b5] border-[#24A0B5] hover:bg-[#249fb5c0]'
 							}
 							onclick={handleTicketSelection}
 							disabled={!isSubmitting}

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { NavLink } from 'react-router';
+import { BsArrowUpRight } from 'react-icons/bs';
+import { GoArrowUpRight } from 'react-icons/go';
 
 const PageHeader = () => {
+	const [hover, setHover] = useState(true);
+	const handleHover = () => {
+		setHover((prev) => !prev);
+	};
 	return (
 		<nav
 			className='w-[320px] md:w-[1200px] h-[68px] md:h-[76px] border border-[#197686] flex justify-between items-center px-[16px] py-[12px] mx-auto rounded-3xl font-jejumyeongo mt-10 animate__animated animate__fadeInUp
@@ -48,10 +54,18 @@ const PageHeader = () => {
 
 			<NavLink
 				to={'/ticket'}
-				className='w-[141px] h-[44px] md:w-[169px] md:h-[52px] bg-white text-black rounded-xl flex items-center justify-center gap-1'
+				className={`w-[141px] h-[44px] md:w-[169px] md:h-[52px] ${
+					hover ? 'bg-white text-black' : 'bg-[#24a0b5] text-white'
+				}  rounded-xl flex items-center justify-center gap-1 transition-all`}
+				onMouseEnter={handleHover}
+				onMouseLeave={handleHover}
 			>
 				MY TICKETS
-				<HiOutlineArrowNarrowRight className='' />
+				{hover ? (
+					<HiOutlineArrowNarrowRight className='animate__animated animate__fadeIn' />
+				) : (
+					<BsArrowUpRight className='transition-all animate__animated animate__fadeIn' />
+				)}
 			</NavLink>
 		</nav>
 	);

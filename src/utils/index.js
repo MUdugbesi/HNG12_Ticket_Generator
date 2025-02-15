@@ -13,4 +13,6 @@ export const genRandBarCode = (length = 6) => {
 		length--;
 	}
 	return barcodeNum;
+
+	
 };

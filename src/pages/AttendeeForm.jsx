@@ -184,9 +184,11 @@ const AttendeeForm = () => {
 
 	const handleAttendeeFormSubmission = useCallback(async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 
 		if (!validateForm()) {
 			setMessage({ message: 'Form validation failed', type: 'error' });
+			setTimeout(() => setIsSubmitting(false), 500);
 			return;
 		}
 
@@ -196,6 +198,7 @@ const AttendeeForm = () => {
 				message: 'Image upload failed, try again',
 				type: 'error',
 			});
+			setTimeout(() => setIsSubmitting(false), 500);
 			return;
 		}
 
@@ -207,7 +210,6 @@ const AttendeeForm = () => {
 
 		setFormData(updatedData);
 		sessionStorage.setItem('formData', JSON.stringify(updatedData));
-
 		setMessage({ message: 'Form validated and submitted!', type: 'success' });
 		setTimeout(() => {
 			setMessage({
@@ -413,9 +415,11 @@ const AttendeeForm = () => {
 							onclick={handleBackBtn}
 						/>
 						<Button
-							text='Get My Free Ticket'
+							text={
+								!isSubmitting ? 'Get My Free Ticket' : 'Generating Ticket...'
+							}
 							className={'bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'}
-							disabled={!formValidated}
+							disabled={!formValidated || isSubmitting}
 							onclick={handleAttendeeFormSubmission}
 						/>
 					</div>
