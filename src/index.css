@@ -20,6 +20,10 @@
 }
 
 @layer components {
+	.select {
+		@apply w-full border-2 border-[#07373F] appearance-none bg-transparent h-[48px] rounded-lg  pl-2 outline-none cursor-pointer;
+	}
+
 	.ticket {
 		background: radial-gradient(
 			circle,

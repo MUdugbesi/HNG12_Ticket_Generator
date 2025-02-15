@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import { AuthContext } from '../context/AuthContext';
 import MessageHandler from '../components/message/MessageHandler';
 import { Navigate, useNavigate, useOutletContext } from 'react-router';
+import Select from '../components/Select';
 
 const TicketSelection = () => {
 	const { setIsValidTicket, setMessage, message } = useOutletContext();
@@ -37,9 +38,8 @@ const TicketSelection = () => {
 		setTicketType(ticket);
 	};
 
-	const handleSelectTicketNum = ({ target }) => {
-		const value = parseInt(target.value, 10);
-		if (value < 1) {
+	const handleSelectTicketNum = (num) => {
+		if (num < 1) {
 			setMessage({
 				message: 'Invalid number of ticket selection',
 				type: 'error',
@@ -47,7 +47,7 @@ const TicketSelection = () => {
 		} else {
 			setMessage(null);
 		}
-		setTicketNum(value);
+		setTicketNum(num);
 	};
 
 	const handleBackBtn = (e) => {
@@ -154,18 +154,11 @@ const TicketSelection = () => {
 					</div>
 
 					<div className='w-[95%] mx-auto relative mt-5'>
-						<p className='pb-2'>Number of Tickets</p>
-						<IoIosArrowDown className='absolute right-2 bottom-4' />
-						<select
-							className='w-full bg-transparent border-2 border-[#07373F] h-[48px] rounded-lg appearance-none pl-2 outline-none cursor-pointer'
-							onChange={handleSelectTicketNum}
-							value={ticketNum}
-						>
-							<option>0</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+						<Select
+							options={[0, 1, 2, 3, 4]}
+							handleSelectTicketNum={handleSelectTicketNum}
+							ticketNum={ticketNum}
+						/>
 					</div>
 					<div className='relative flex md:hidden'>
 						{message?.message && <MessageHandler userMessage={message} />}
@@ -180,9 +173,7 @@ const TicketSelection = () => {
 						/>
 						<Button
 							text='Next'
-							className={
-								' bg-[#24a0b5] border-[#24A0B5] hover:bg-[#249fb5c0]'
-							}
+							className={' bg-[#24a0b5] border-[#24A0B5] hover:bg-[#249fb5c0]'}
 							onclick={handleTicketSelection}
 							disabled={!isSubmitting}
 						/>
