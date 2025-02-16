@@ -21,6 +21,7 @@ const AttendeeForm = () => {
 	const { message, setMessage, setTicketGenerated, isValidTicket } =
 		useOutletContext();
 	const navigate = useNavigate();
+	const [ticketAccess, setTicketAccess] = useState('Free');
 
 	const [userDetails, setUserDetails] = useState({
 		fullName: '',
@@ -50,7 +51,8 @@ const AttendeeForm = () => {
 
 		if (updatedData) {
 			try {
-				const { fullName, email, request } = JSON.parse(updatedData);
+				const { fullName, email, request, ticketType } =
+					JSON.parse(updatedData);
 				if (fullName || email || request) {
 					setUserDetails({
 						fullName,
@@ -58,7 +60,11 @@ const AttendeeForm = () => {
 						request,
 					});
 				}
+
 				if (storedFile) setImageFile(storedFile);
+				if (ticketType.plan.toLowerCase() !== 'free') {
+					setTicketAccess(ticketType.access.replace(/ access$/i, ''));
+				}
 			} catch (e) {
 				console.error('Error parsing sessionStorage data:', e);
 			}
@@ -416,7 +422,9 @@ const AttendeeForm = () => {
 						/>
 						<Button
 							text={
-								!isSubmitting ? 'Get My Free Ticket' : 'Generating Ticket...'
+								!isSubmitting
+									? `Get My ${ticketAccess} Ticket`
+									: 'Generating Ticket...'
 							}
 							className={'bg-[#24A0B5] border-[#24A0B5] hover:bg-[#249fb5c0]'}
 							disabled={!formValidated || isSubmitting}
